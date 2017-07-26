@@ -25,7 +25,7 @@ $(document).ready(function() {
     $("#source").submit(function(event){
         event.preventDefault();
         var id = $('#sourceOption').val();
-        var url = 'https://newsapi.org/v1/sources';
+        var url = 'https://newsapi.org/v1/articles';
         var data = {apikey:"b9c5d0d41c8b45e592490b7114c532ce",source:id};
         $.ajax({
             url:url,
@@ -34,11 +34,15 @@ $(document).ready(function() {
             success:function(response){
                 var articles = response.articles ;
                 console.log(response);
-                
-                
+                //displaying articles
+                var html = "<ul class='list-group'>";
+                $.each(articles,function(index,article){
+                    html+="<li class='list-item'>"+article.title+"</li>";
+                });
+                html += "</ul>";
+                $("#articles").html(html);
             }
         });
-
         
     });
     
