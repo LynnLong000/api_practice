@@ -33,13 +33,20 @@ $(document).ready(function() {
             type:"GET",
             success:function(response){
                 var articles = response.articles ;
-                console.log(response);
+               //  console.log(response);
                 //displaying articles
                 var html = "<ul class='list-group'>";
+                
                 $.each(articles,function(index,article){
-                    html+="<li class='list-item'>"+article.title+"</li>";
+                    html+="<div class='container'>";
+                    html+="<li class='list-item'>"+'Author: '+article.author+"</li>";
+                    html+="<h>"+'title: '+article.title+"</h>";
+                    html+="<p>"+'description: '+article.description+"</p>";
+                  //  html+="</ul>";
+                    html+="</div>";
                 });
-                html += "</ul>";
+                html+="</ul>";
+            //    html+="</div>";
                 $("#articles").html(html);
             }
         });
